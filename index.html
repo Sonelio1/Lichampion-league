@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LICHEMPIONS LEAGUE - COPPA LICEI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon -->
+    <link rel="icon" href="Logo.png" type="image/png">
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+</head>
+
+<body>
+    <!-- Countdown -->
+    <div class="countdown" id="countdown">
+        Prossima partita tra: <span id="countdown-timer">00g 00h 00m</span>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <button class="menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="logo-container">
+            <img src="Logo.png" alt="Bocchi Galileague Logo" class="logo-img">
+        </div>
+        <div class="tagline">Torneo interscolastico di calcetto</div>
+    </header>
+
+    <!-- Menu a scomparsa -->
+    <nav class="nav-menu" id="navMenu">
+        <button class="close-btn" id="closeBtn">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#teams-overview">Tutte le squadre</a></li>
+            <li><a href="#standings">Classifica</a></li>
+            <li><a href="#matches">Partite</a></li>
+            <li><a href="#location">Dove siamo</a></li>
+            <li><a href="#contact">Contatti</a></li>
+            <li><a href="#admin">Amministrazione</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>LICHEMPIONS LEAGUE</h1>
+            <p>Il torneo che unisce le scuole attraverso lo sport e la sana competizione</p>
+        </div>
+    </section>
+
+    <!-- Squadre - Panoramica -->
+    <section class="teams-overview" id="teams-overview">
+        <div class="section-title">
+            <h2>Le Squadre</h2>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card" data-team="atletito">
+                <div class="team-logo">
+                    <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Atletito Madrid</h3>
+                </div>
+            </div>
+
+            <div class="team-card" data-team="sborussia">
+                <div class="team-logo">
+                    <img src="Sborussia.png" alt="Sborussia Dortmund">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Sborussia Dortmund</h3>
+                </div>
+            </div>
+
+            <div class="team-card" data-team="hateful">
+                <div class="team-logo">
+                    <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">Hateful Nine</h3>
+                </div>
+            </div>
+
+            <div class="team-card" data-team="badini">
+                <div class="team-logo">
+                    <img src="acBadini.jpeg" alt="AC Badini">
+                </div>
+                <div class="team-info">
+                    <h3 class="team-name">AC Badini</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dettaglio squadre -->
+    <section id="team-details">
+        <!-- Atletito Madrid -->
+        <div class="team-detail" id="team-atletito">
+            <div class="team-header">
+                <div class="team-header-logo">
+                    <img src="AtletitoMadrid.jpeg" width="150" height="150" alt="Atletito Madrid">
+                </div>
+                <div class="team-header-info">
+                    <h3 class="team-detail-name">Atletito Madrid</h3>
+                    <p class="team-motto">Colore maglia: Arancione</p>
+                </div>
+            </div>
+
+            <div class="team-staff">
+                <h4>Staff Tecnico</h4>
+                <p><strong>Capitano:</strong> Mottaran Giulio (77)</p>
+                <p><strong>Allenatore:</strong> Franzolin Leonardo</p>
+                <p><strong>Allenatore in seconda:</strong> Lunardi Francesco</p>
+            </div>
+
+            <div class="team-players">
+                <h4>Rosa Giocatori</h4>
+                <div class="player-list">
+                    <div class="player-item"><span class="player-number">77</span> Mottaran Giulio (c)</div>
+                    <div class="player-item"><span class="player-number">7</span> Franzolin Leonardo</div>
+                    <div class="player-item"><span class="player-number">8</span> Melarato Lorenzo</div>
+                    <div class="player-item"><span class="player-number">9</span> Birolo Alex</div>
+                    <div class="player-item"><span class="player-number">10</span> Ferro Valentino</div>
+                    <div class="player-item"><span class="player-number">14</span> Duò Alessandro</div>
+                    <div class="player-item"><span class="player-number">29</span> Melarato Giulio</div>
+                    <div class="player-item"><span class="player-number">69</span> Dalla Costa Thomas</div>
+                    <div class="player-item"><span class="player-number">79</span> Fontana Denis</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sborussia Dortmund -->
+        <div class="team-detail" id="team-sborussia">
+            <div class="team-header">
+                <div class="team-header-logo">
+                    <img src="Sborussia.png" width="110" height="110" alt="Sborussia Dortmund">
+                </div>
+                <div class="team-header-info">
+                    <h3 class="team-detail-name">Sborussia Dortmund</h3>
+                    <p class="team-motto">Colore maglia: Giallo-Nero</p>
+                </div>
+            </div>
+
+            <div class="team-staff">
+                <h4>Staff Tecnico</h4>
+                <p><strong>Capitano:</strong> Padovani Alberto (19)</p>
+                <p><strong>Allenatore:</strong> Ruzza Tommaso e Bergamaschi Paolo</p>
+            </div>
+
+            <div class="team-players">
+                <h4>Rosa Giocatori</h4>
+                <div class="player-list">
+                    <div class="player-item"><span class="player-number">19</span> Padovani Alberto (c)</div>
+                    <div class="player-item"><span class="player-number">2</span> Avezzù Massimo</div>
+                    <div class="player-item"><span class="player-number">5</span> Grandi Gabriel</div>
+                    <div class="player-item"><span class="player-number">7</span> Augusti Giacomo</div>
+                    <div class="player-item"><span class="player-number">10</span> Augusti Sebastiano</div>
+                    <div class="player-item"><span class="player-number">42</span> Zanini Christian</div>
+                    <div class="player-item"><span class="player-number">69</span> Pellegrini Riccardo</div>
+                    <div class="player-item"><span class="player-number">99</span> Paoli Alberto</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hateful Nine -->
+        <div class="team-detail" id="team-hateful">
+            <div class="team-header">
+                <div class="team-header-logo">
+                    <img src="HatefullNine.jpeg" width="110" height="130" alt="Hateful Nine">
+                </div>
+                <div class="team-header-info">
+                    <h3 class="team-detail-name">Hateful Nine</h3>
+                    <p class="team-motto">Colore maglia: In arrivo</p>
+                </div>
+            </div>
+
+            <div class="team-staff">
+                <h4>Staff Tecnico</h4>
+                <p><strong>Capitano:</strong> Vassalli Pietro (7)</p>
+                <p><strong>Allenatore:</strong> Portieri Michele</p>
+            </div>
+
+            <div class="team-players">
+                <h4>Rosa Giocatori</h4>
+                <div class="player-list">
+                    <div class="player-item"><span class="player-number">4</span> Marozzi Francesco</div>
+                    <div class="player-item"><span class="player-number">7</span> Vassalli Pietro</div>
+                    <div class="player-item"><span class="player-number">9</span> Oliva Tommaso</div>
+                    <div class="player-item"><span class="player-number">10</span> Gorda Luca</div>
+                    <div class="player-item"><span class="player-number">11</span> Molena Mattia</div>
+                    <div class="player-item"><span class="player-number">17</span> De Simone Filippo</div>
+                    <div class="player-item"><span class="player-number">19</span> Nocera Fabio</div>
+                    <div class="player-item"><span class="player-number">20</span> Cappello Christian</div>
+                    <div class="player-item"><span class="player-number">27</span> Legdani Hamza</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- AC Badini -->
+        <div class="team-detail" id="team-badini">
+            <div class="team-header">
+                <div class="team-header-logo">
+                    <img src="acBadini.jpeg" width="150" height="150" alt="AC Badini">
+                </div>
+                <div class="team-header-info">
+                    <h3 class="team-detail-name">AC Badini</h3>
+                    <p class="team-motto">Born to Win</p>
+                </div>
+            </div>
+
+            <div class="team-staff">
+                <h4>Staff Tecnico</h4>
+                <p><strong>Capitano:</strong> Guarnieri Jacopo (4)</p>
+                <p><strong>Allenatore:</strong> Dentello Gilberto</p>
+            </div>
+
+            <div class="team-players">
+                <h4>Rosa Giocatori</h4>
+                <div class="player-list">
+                    <div class="player-item"><span class="player-number">4</span> Guarnieri Jacopo (c)</div>
+                    <div class="player-item"><span class="player-number">5</span> Stella Jordan</div>
+                    <div class="player-item"><span class="player-number">6</span> Marchi Filippo</div>
+                    <div class="player-item"><span class="player-number">9</span> Beltramini Pietro</div>
+                    <div class="player-item"><span class="player-number">10</span> Girotti Riccardo</div>
+                    <div class="player-item"><span class="player-number">19</span> Germiniani Pascal</div>
+                    <div class="player-item"><span class="player-number">27</span> Maistro Giovanni</div>
+                    <div class="player-item"><span class="player-number">55</span> Gherbin Massimo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Classifica -->
+    <section class="standings" id="standings">
+        <div class="section-title">
+            <h2>Classifica</h2>
+        </div>
+
+        <div class="standings-container">
+            <div class="standings">
+                <table class="standings-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Squadra</th>
+                            <th>P</th>
+                            <th>V</th>
+                            <th>N</th>
+                            <th>P</th>
+                            <th>GF</th>
+                            <th>GS</th>
+                            <th>DR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Atletito Madrid</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>Sborussia Dortmund</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>Hateful Nine</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>AC Badini</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partite -->
+    <section class="matches" id="matches">
+        <div class="section-title">
+            <h2>Partite</h2>
+        </div>
+
+        <div class="matches-container">
+            <div class="match-day">
+                <h3>2 Giugno 2025 - Fase a Gironi</h3>
+                <div class="match-list">
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                                </div>
+                                Atletito Madrid
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                AC Badini
+                                <div class="team-logo-small">
+                                    <img src="acBadini.jpeg" alt="AC Badini">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="Sborussia.png" alt="Sborussia Dortmund">
+                                </div>
+                                Sborussia Dortmund
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                Hateful Nine
+                                <div class="team-logo-small">
+                                    <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                                </div>
+                                Atletito Madrid
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                Hateful Nine
+                                <div class="team-logo-small">
+                                    <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="Sborussia.png" alt="sborussia">
+                                </div>
+                                Sborussia Dortmund
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                Atletito Madrid
+                                <div class="team-logo-small">
+                                    <img src="AtletitoMadrid.jpeg" alt="Atletito">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="acBadini.jpeg" alt="AC Badini">
+                                </div>
+                                AC Badini
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                Sborussia Dortmund
+                                <div class="team-logo-small">
+                                    <img src="Sborussia.png" alt="Sborussia">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small">
+                                    <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                </div>
+                                Hateful Nine
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                AC Badini
+                                <div class="team-logo-small">
+                                    <img src="acBadini.jpeg" alt="AC Badini">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-info">
+                        <p><i class="fas fa-clock"></i> Orario: 09:00 - 14:00</p>
+                        <p><i class="fas fa-clock"></i> Durata partute: 45 min</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Palazzetto dello Sport Lucio Donà, Adria</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="match-day" id="finals" style="display: none;">
+                <h3>7 Giugno 2025 - Finali</h3>
+                <div class="match-list">
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small"><img id="logo-3" src="" alt="3° Classificata"></div>
+                                <span id="team-3">3° Classificata</span>
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                <span id="team-4">4° Classificata</span>
+                                <div class="team-logo-small"><img id="logo-4" src="" alt="4° Classificata"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-item">
+                        <div class="teams-playing">
+                            <div class="team-home">
+                                <div class="team-logo-small"><img id="logo-1" src="" alt="1° Classificata"></div>
+                                <span id="team-1">1° Classificata</span>
+                            </div>
+                            <div class="match-score">- : -</div>
+                            <div class="team-away">
+                                <span id="team-2">2° Classificata</span>
+                                <div class="team-logo-small"><img id="logo-2" src="" alt="2° Classificata"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="match-info">
+                        <p><i class="fas fa-clock"></i> Orario: 14:00 - 17:00</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Palazzetto dello Sport Lucio Donà, Adria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dove siamo -->
+    <section class="location" id="location">
+        <div class="section-title">
+            <h2>Dove Siamo</h2>
+        </div>
+
+        <div class="location-info">
+            <p><i class="fas fa-map-marker-alt"></i> <strong>Palazzetto dello Sport Lucio Donà</strong><br>
+                Via Aldo Moro, 18D, 45011 Adria RO</p>
+
+            <p><i class="fas fa-info-circle"></i> Tutti i partecipanti devono presentarsi al campo 30 minuti prima del
+                calcio d'inizio.</p>
+
+            <p><i class="fas fa-futbol"></i> Torneo di calcetto a 5 (4+1 portiere)</p>
+        </div>
+
+        <div class="location-map">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2818.7884246207327!2d12.04605757595242!3d45.04951516101198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477e8d277358d18d%3A0x3875927b9e07b0df!2sPalazzetto%20dello%20Sport%20Lucio%20Don%C3%A0!5e0!3m2!1sit!2sit!4v1748458822483!5m2!1sit!2sit"
+                allowfullscreen="" loading="lazy"></iframe>
+        </div>
+    </section>
+
+    <!-- Contatti -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Contatti</h2>
+        </div>
+
+        <div class="contact-info">
+            <p><i class="fas fa-users"></i> <strong>Organizzatori:</strong><br>
+                Marozzi Francesco, Mottaran Giulio,<br>
+                Oliva Tommaso, Vassalli Pietro</p>
+                
+            <p><i class="fas fa-phone"></i> <strong>Telefono:</strong><br>
+                +39 349 2782488</p>
+            <p><i class="fas fa-mail"></i> <strong>Mail:</strong><br>
+                coppalicei@gmail.com</p>
+        </div>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/lichampionsleague?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                class="social-link" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Sezione Amministrazione -->
+    <section class="admin-section" id="admin">
+        <div class="section-title">
+            <h2>Amministrazione</h2>
+        </div>
+
+        <div id="admin-login">
+            <div class="admin-form">
+                <h3>Accesso Amministratore</h3>
+                <input type="password" id="admin-password" placeholder="Inserisci password">
+                <button onclick="checkPassword()">Accedi</button>
+            </div>
+        </div>
+
+        <div id="admin-panel" style="display: none">
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="openTab('standings-tab')">Classifica</button>
+                <button class="tab-btn" onclick="openTab('matches-tab')">Partite</button>
+            </div>
+
+            <div id="standings-tab" class="tab-content active">
+                <h3>Modifica Classifica</h3>
+                <form id="update-standings">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Squadra</th>
+                                <th>P</th>
+                                <th>V</th>
+                                <th>N</th>
+                                <th>P</th>
+                                <th>GF</th>
+                                <th>GS</th>
+                                <th>DR</th>
+                            </tr>
+                        </thead>
+                        <tbody id="standings-form-body">
+                            <tr>
+                                <td>Atletito Madrid</td>
+                                <td><input type="number" name="points" value="0" min="0" data-team="Atletito Madrid">
+                                </td>
+                                <td><input type="number" name="wins" value="0" min="0" data-team="Atletito Madrid"></td>
+                                <td><input type="number" name="draws" value="0" min="0" data-team="Atletito Madrid">
+                                </td>
+                                <td><input type="number" name="losses" value="0" min="0" data-team="Atletito Madrid">
+                                </td>
+                                <td><input type="number" name="gf" value="0" min="0" data-team="Atletito Madrid"></td>
+                                <td><input type="number" name="ga" value="0" min="0" data-team="Atletito Madrid"></td>
+                                <td><input type="number" name="gd" value="0" data-team="Atletito Madrid"></td>
+                            </tr>
+                            <tr>
+                                <td>Sborussia Dortmund</td>
+                                <td><input type="number" name="points" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="wins" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="draws" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="losses" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="gf" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="ga" value="0" min="0" data-team="Sborussia Dortmund">
+                                </td>
+                                <td><input type="number" name="gd" value="0" data-team="Sborussia Dortmund"></td>
+                            </tr>
+                            <tr>
+                                <td>Hateful Nine</td>
+                                <td><input type="number" name="points" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="wins" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="draws" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="losses" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="gf" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="ga" value="0" min="0" data-team="Hateful Nine"></td>
+                                <td><input type="number" name="gd" value="0" data-team="Hateful Nine"></td>
+                            </tr>
+                            <tr>
+                                <td>AC Badini</td>
+                                <td><input type="number" name="points" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="wins" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="draws" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="losses" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="gf" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="ga" value="0" min="0" data-team="AC Badini"></td>
+                                <td><input type="number" name="gd" value="0" data-team="AC Badini"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit">Aggiorna Classifica</button>
+                </form>
+            </div>
+
+            <div id="matches-tab" class="tab-content">
+                <h3>Modifica Risultati Partite</h3>
+                <form id="update-matches">
+                    <div class="match-day">
+                        <h4>2 Giugno 2025 - Fase a Gironi</h4>
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                                    </div>
+                                    Atletito Madrid
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score1" min="0"> :
+                                    <input type="number" name="away-score1" min="0">
+                                </div>
+                                <div class="team-away">
+                                    AC Badini
+                                    <div class="team-logo-small">
+                                        <img src="acBadini.jpeg" alt="AC Badini">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="Sborussia.png" alt="Sborussia Dortmund">
+                                    </div>
+                                    Sborussia Dortmund
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score2" min="0"> :
+                                    <input type="number" name="away-score2" min="0">
+                                </div>
+                                <div class="team-away">
+                                    Hateful Nine
+                                    <div class="team-logo-small">
+                                        <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="acBadini.jpeg" alt="AC Badini">
+                                    </div>
+                                    AC Badini
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score3" min="0"> :
+                                    <input type="number" name="away-score3" min="0">
+                                </div>
+                                <div class="team-away">
+                                    Hateful Nine
+                                    <div class="team-logo-small">
+                                        <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="Sborussia.png" alt="Sborussia Dortmund">
+                                    </div>
+                                    Sborussia Dortmund
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score4" min="0"> :
+                                    <input type="number" name="away-score4" min="0">
+                                </div>
+                                <div class="team-away">
+                                    Atletito Madrid
+                                    <div class="team-logo-small">
+                                        <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="acBadini.jpeg" alt="AC Badini">
+                                    </div>
+                                    AC Badini
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score5" min="0"> :
+                                    <input type="number" name="away-score5" min="0">
+                                </div>
+                                <div class="team-away">
+                                    Sborussia Dortmund
+                                    <div class="team-logo-small">
+                                        <img src="Sborussia.png" alt="Sborussia Dortmund">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="admin-match-item">
+                            <div class="teams-playing">
+                                <div class="team-home">
+                                    <div class="team-logo-small">
+                                        <img src="HatefullNine.jpeg" alt="Hateful Nine">
+                                    </div>
+                                    Hateful Nine
+                                </div>
+                                <div class="match-score">
+                                    <input type="number" name="home-score6" min="0"> :
+                                    <input type="number" name="away-score6" min="0">
+                                </div>
+                                <div class="team-away">
+                                    Atletito Madrid
+                                    <div class="team-logo-small">
+                                        <img src="AtletitoMadrid.jpeg" alt="Atletito Madrid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Altre partite... -->
+                    </div>
+            </div>
+            <button type="submit">Aggiorna Partite</button>
+            </form>
+        </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">LICHEMPIONS LEAGUE</div>
+        <div class="copyright">
+            © 2025 LICHEMPIONS LEAGUE - Tutti i diritti riservati<br>
+            Organizzato dagli studenti del Liceo Bocchi-Galilei<br>
+            Sito a cura di Nicolò Tordin (el mejo)
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Inizializzazione Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyCu5PxaWJum51zy6aw6ur9VEVUioSMRMSA",
+            authDomain: "calcetto-bocchi.firebaseapp.com",
+            databaseURL: "https://calcetto-bocchi-default-rtdb.europe-west1.firebasedatabase.app",
+            projectId: "calcetto-bocchi",
+            storageBucket: "calcetto-bocchi.firebasestorage.app",
+            messagingSenderId: "644121408419",
+            appId: "1:644121408419:web:83407cc504211f3ad9a016"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // Menu mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const navMenu = document.getElementById('navMenu');
+        menuBtn.addEventListener('click', () => navMenu.classList.add('active'));
+        closeBtn.addEventListener('click', () => navMenu.classList.remove('active'));
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => navMenu.classList.remove('active'));
+        });
+
+        // Visualizzazione dettaglio squadra
+        const teamCards = document.querySelectorAll('.team-card');
+        const teamDetails = document.querySelectorAll('.team-detail');
+        teamCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const teamId = card.getAttribute('data-team');
+                teamDetails.forEach(detail => detail.classList.remove('active'));
+                document.getElementById(`team-${teamId}`).classList.add('active');
+                document.getElementById('team-details').scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Countdown
+        function updateCountdown() {
+            let matchDate = new Date('2025-06-02T09:00:00');
+            const now = new Date();
+            if (now > matchDate) matchDate = new Date('2025-06-07T14:00:00');
+            const diff = matchDate - now;
+            if (diff <= 0) return document.getElementById('countdown-timer').textContent = "Partita in corso!";
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            document.getElementById('countdown-timer').textContent = `${days}g ${hours}h ${minutes}m`;
+        }
+        updateCountdown();
+        setInterval(updateCountdown, 60000);
+
+        // Back to top
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.pageYOffset > 300);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Animazioni scroll
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.team-card, .team-detail, .timeline-item');
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // Sezione admin
+        function checkPassword() {
+            const pwd = document.getElementById("admin-password").value;
+            if (pwd === "facile") {
+                document.getElementById("admin-login").style.display = "none";
+                document.getElementById("admin-panel").style.display = "block";
+                loadCurrentData();
+                loadStandingsData(); // AGGIUNGERE QUESTA RIGA
+            } else {
+                alert("Password errata");
+            }
+        }
+
+        function openTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        function loadCurrentData() {
+            const rows = document.querySelectorAll(".standings-table tbody tr");
+            rows.forEach((row, index) => {
+                const form = document.getElementById("update-standings");
+                form[`points${index + 1}`].value = row.children[2].textContent;
+                form[`win${index + 1}`].value = row.children[3].textContent;
+                form[`draw${index + 1}`].value = row.children[4].textContent;
+                form[`lose${index + 1}`].value = row.children[5].textContent;
+                form[`gf${index + 1}`].value = row.children[6].textContent;
+                form[`gs${index + 1}`].value = row.children[7].textContent;
+                form[`dr${index + 1}`].value = row.children[8].textContent;
+            });
+
+            const matches = document.querySelectorAll(".match-item .match-score");
+            const matchForm = document.getElementById("update-matches");
+            matches.forEach((match, index) => {
+                const score = match.textContent.trim();
+                if (score !== "- : -") {
+                    const [home, away] = score.split(":").map(s => s.trim());
+                    if (matchForm[`home-score${index + 1}`]) {
+                        matchForm[`home-score${index + 1}`].value = home;
+                        matchForm[`away-score${index + 1}`].value = away;
+                    }
+                }
+            });
+        }
+
+        // Salvataggio risultati
+        document.getElementById("update-matches").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            let risultati = {};
+            for (let i = 1; i <= 6; i++) {
+                const home = formData.get(`home-score${i}`) || "-";
+                const away = formData.get(`away-score${i}`) || "-";
+                risultati[`match${i}`] = { home, away };
+                const el = document.querySelector(`.match-item:nth-child(${i}) .match-score`);
+                if (el) el.textContent = `${home} : ${away}`;
+            }
+            db.ref("matches").set(risultati)
+                .then(() => alert("Risultati salvati!"))
+                .catch(err => alert("Errore salvataggio: " + err));
+        });
+
+        // Caricamento risultati
+        document.addEventListener("DOMContentLoaded", () => {
+            db.ref("matches").once("value").then(snapshot => {
+                const data = snapshot.val();
+                if (!data) return;
+                for (let i = 1; i <= 6; i++) {
+                    const el = document.querySelector(`.match-item:nth-child(${i}) .match-score`);
+                    if (el && data[`match${i}`]) {
+                        el.textContent = `${data[`match${i}`].home} : ${data[`match${i}`].away}`;
+                    }
+                }
+            });
+            db.ref("standings").once("value").then(snapshot => {
+                const standings = snapshot.val();
+                if (standings) {
+                    updatePublicStandings(standings);
+                }
+            });
+        });
+        // Carica i dati della classifica
+        function loadStandingsData() {
+            db.ref("standings").once("value").then(snapshot => {
+                const standingsData = snapshot.val();
+                const inputs = document.querySelectorAll("#standings-form-body input");
+
+                if (standingsData) {
+                    // Carica i dati esistenti nei form
+                    inputs.forEach(input => {
+                        const team = input.getAttribute("data-team");
+                        const field = input.getAttribute("name");
+
+                        if (standingsData[team] && standingsData[team][field] !== undefined) {
+                            input.value = standingsData[team][field];
+                        }
+                    });
+                }
+            });
+        }
+        // Salva i dati della classifica
+        document.getElementById("update-standings").addEventListener("submit", function (e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const inputs = this.querySelectorAll("input");
+            let standings = {};
+
+            // Raggruppa i dati per squadra
+            inputs.forEach(input => {
+                const team = input.getAttribute("data-team");
+                const field = input.getAttribute("name");
+                const value = parseInt(input.value) || 0;
+
+                if (!standings[team]) {
+                    standings[team] = {};
+                }
+
+                standings[team][field] = value;
+            });
+
+            // Calcola la differenza reti
+            for (const team in standings) {
+                standings[team].gd = standings[team].gf - standings[team].ga;
+            }
+
+            // Salva nel database
+            db.ref("standings").set(standings)
+                .then(() => {
+                    alert("Classifica salvata con successo!");
+                    updatePublicStandings(standings);
+                })
+                .catch(err => alert("Errore nel salvataggio: " + err));
+        });
+
+        // Aggiorna la classifica pubblica
+        function updatePublicStandings(standings) {
+            const tableBody = document.querySelector(".standings-table tbody");
+
+            if (!tableBody) return;
+
+            // Ordina la classifica per punti (decrescente) e differenza reti (decrescente)
+            const sortedTeams = Object.entries(standings).sort((a, b) => {
+                if (b[1].points !== a[1].points) return b[1].points - a[1].points;
+                return b[1].gd - a[1].gd;
+            });
+
+            tableBody.innerHTML = '';
+
+            sortedTeams.forEach(([team, stats], index) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${team}</td>
+            <td>${stats.points || 0}</td>
+            <td>${stats.wins || 0}</td>
+            <td>${stats.draws || 0}</td>
+            <td>${stats.losses || 0}</td>
+            <td>${stats.gf || 0}</td>
+            <td>${stats.ga || 0}</td>
+            <td>${stats.gd || 0}</td>
+        `;
+                tableBody.appendChild(row);
+            });
+        }
+    </script>
+</body>
+<!-- ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⣀⣀⠀⠀⣀⡠⠴⠒⠚⠉⠉⠓⠒⠦⣄⣶⠒⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠘⡷⢬⣉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠠⡌⠻⣧⢻⣧⣤⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣖⠗⡋⢹⠀⠀⢰⡄⠀⠀⢸⣷⡀⠀⣠⠽⣆⢼⣇⢻⣸⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡜⣡⣶⢋⡏⠙⢢⣏⣇⠀⠀⠈⣇⡵⡏⠀⠀⢹⡏⢾⣿⠃⢿⡆⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⢿⢻⣏⣿⡇⡄⣾⠀⠹⡄⠄⠀⡇⠀⠹⣤⠈⠹⣿⣾⢸⠀⢘⣷⣄⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⣴⣯⣿⣽⣿⣷⢸⡗⠦⣄⡹⣼⣄⣿⣴⠛⠹⡄⡇⣿⣿⠾⠚⢹⢿⢽⣽⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣿⣞⣾⣿⢿⣯⢻⢻⡴⠞⠁⠈⠻⣿⣌⡉⠓⣿⣰⡿⠀⠀⠀⠸⡜⡾⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡴⣡⠊⢸⣹⠁⠈⠙⣾⡄⠁⠀⢰⠛⠉⠉⠉⢳⣀⣿⣿⠃⠀⠀⣀⣀⣧⣿⡞⣷⡀⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠋⡴⠁⠀⠸⢿⣤⣤⣤⣹⣿⣷⣶⣾⣷⣶⣶⣺⣋⣽⣿⣷⠶⠟⠛⠋⢧⠀⠀⠸⡜⣷⠀⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡜⠁⡰⠁⠀⠀⢠⡿⠀⠀⠀⠉⠉⠉⠙⢻⡟⣹⣿⠃⣿⠋⠁⠀⠀⠀⠀⠀⠸⡄⠀⠀⢣⠹⣧⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⠏⡀⢠⠇⠀⠀⢠⡿⠁⠀⠀⠀⠀⣤⣶⡴⠚⢻⠡⣸⠀⢹⣆⠀⠀⠀⠀⠀⠀⠀⡇⠀⠀⠸⡄⢻⣇⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡏⣼⠁⢸⠀⠀⠀⣾⠃⠀⠀⠀⠀⠀⢻⣿⣧⣀⣬⠋⠁⠀⣠⣿⣶⣆⠀⠀⠀⠀⠀⡇⠀⠀⠀⡇⠈⣿⡀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⣸⣿⠀⡇⠀⢰⣸⡟⠀⠀⠀⣀⣠⠴⠚⣟⣻⣧⣯⣗⣤⣾⣿⣿⡿⠋⠀⠀⠀⠀⣸⣤⠀⠀⠀⡇⡆⢻⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣿⡿⢸⡀⣇⠀⣸⣿⡁⠀⣾⣻⡁⣀⣤⣶⠟⠋⠉⠛⢿⣋⣻⡏⠉⠀⠀⠀⠀⠀⢰⣿⡇⠀⠀⠀⣷⡇⣸⡄⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠿⠇⠀⢧⢸⠀⣿⡿⠇⠀⠈⠛⠛⠋⠉⠀⠀⠀⠀⠀⡟⠀⣿⠇⠀⠀⠀⠀⠀⢠⣿⣿⡇⠀⠀⣰⡿⣧⣿⠃⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢿⣄⣹⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢰⡇⠀⣿⠀⠀⠀⠀⠀⠀⣸⡿⢸⠁⢠⣾⠋⢰⣿⡏⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠛⠛⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⣶⣶⡿⠀⠀⠀⠀⠀⠀⠉⠁⢸⣶⡟⠁⠀⠾⠟⠀⠀⠀⠀⠀⠀⠀
+⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+       __       ___  _       
+     /_ |     / _ \| |      
+ _ __ | | ___| | | | | ___  
+| '_ \| |/ __| | | | |/ _ \ 
+| | | | | (__| |_| | | (_) |
+|_| |_|_|\___|\___/|_|\___/                           
+-->
+
+</html>
